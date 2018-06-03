@@ -83,8 +83,9 @@ function load_prev_next(item)
     local dir_path = get_directory_path(item)
     local dir_file_names = vlc.net.opendir(dir_path)
     local media_file_names = get_valid_files(dir_file_names, media_extensions)
+    local media_files_count = #media_file_names
     
-    if #media_file_names < 2 then
+    if media_files_count < 2 then
         log(" didn't find adjecent media files.")
         return
     end
@@ -98,13 +99,20 @@ function load_prev_next(item)
         return
     end
     
+    -- add previous or last file (if there are more then 2 media files)
     if media_file_names[current_media_file_index - 1] then
         add_file_to_playlist(media_file_names[current_media_file_index - 1], dir_path)
         last_file_to_first_position()
+    elseif media_files_count >= 3 then
+        add_file_to_playlist(media_file_names[media_files_count], dir_path)
+        last_file_to_first_position()
     end
     
+    -- add next or first file (if there are more than 2 media files)
     if media_file_names[current_media_file_index + 1] then
         add_file_to_playlist(media_file_names[current_media_file_index + 1], dir_path)
+    elseif media_files_count >= 3 then
+        add_file_to_playlist(media_file_names[1], dir_path)
     end
 end
 

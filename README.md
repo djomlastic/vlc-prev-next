@@ -25,17 +25,8 @@ Vlc player (that's how Vlc handles it's extensions). If Vlc is your default play
 instance you can play files from your file manager (or something else) and it will work fine as long as you don't
 close that Vlc instance.
 
-### Quirks
+### Notice
 
-* Clicking next when playing last file in a directory loads previous file:  
-  \- That's what Vlc normally does. When there is no next file it plays the first one from the playlist, and in this
-case that is the previous file.
-
-* Clicking previous when playing first file in a directory loads next file:  
-  \- That's what Vlc normally does. When there is no previous file it plays the last one from the playlist, and in this
-case that is the next file.
-
-* It (sometimes) doesn't work:  
-  \- Extension is looking for these files: ".mp4", ".m4v", ".avi", ".wmv", ".mkv", ".mov", ".mpeg", ".mpg".
-  If your file is not one of these and Vlc can play it, you can add that file extension to `media_extensions` array
-  (it's near the top of VlcPrevNext.lua).
+Extension is looking for these files: ".mp4", ".m4v", ".avi", ".wmv", ".mkv", ".mov", ".mpeg", ".mpg". If your file
+is not one of these and Vlc can play it, you can add that file extension to `media_extensions` array (it's near the
+top of VlcPrevNext.lua).

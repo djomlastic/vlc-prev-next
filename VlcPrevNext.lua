@@ -26,7 +26,7 @@ local app_version = "0.0.1"
 local app_title = app_name .. " " .. app_version
 local app_description = "Adds previous and next files from the same directory to the playlist."
 local app_short_desc = "Load prev/next file"
-local media_extensions = {".mp4", ".m4v", ".avi", ".wmv", ".mkv", ".mov", ".mpeg", ".mpg"}
+local media_extensions = {".mp4", ".mkv", ".avi", ".mov", ".mp3", ".flac", ".m4v", ".wmv", ".mpeg", ".mpg"}
 
 
 -- VLC HOOKS

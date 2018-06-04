@@ -46,6 +46,10 @@ function meta_changed()
     return false
 end
 
+-- Note: For some reason Vlc triggers this function twice when new file
+--       plays. So we'll add some meta to the item we processed to be
+--       be able to track state and avoid processing the same file twice.
+-------------------------------------------------------------------------
 -- Called when input changes (new file plays).
 ----------------------------------------------
 function input_changed()
@@ -56,7 +60,13 @@ function input_changed()
         return
     end
 
+    if item:metas()[app_name] then
+        return
+    end
+
     load_prev_next(item)
+
+    item:set_meta(app_name, "File processed.")
 end
 
 
@@ -99,7 +109,7 @@ function load_prev_next(item)
         return
     end
     
-    -- add previous or last file (if there are more then 2 media files)
+    -- add previous, or last file if there are more then 2 media files
     if media_file_names[current_media_file_index - 1] then
         add_file_to_playlist(media_file_names[current_media_file_index - 1], dir_path)
         last_file_to_first_position()
@@ -108,7 +118,7 @@ function load_prev_next(item)
         last_file_to_first_position()
     end
     
-    -- add next or first file (if there are more than 2 media files)
+    -- add next, or first file if there are more than 2 media files
     if media_file_names[current_media_file_index + 1] then
         add_file_to_playlist(media_file_names[current_media_file_index + 1], dir_path)
     elseif media_files_count >= 3 then

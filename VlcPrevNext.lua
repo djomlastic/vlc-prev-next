@@ -1,6 +1,6 @@
 local app_name = "VlcPrevNext"
 local app_sig = "[" .. app_name .. "]"
-local app_version = "0.0.1"
+local app_version = "0.1.0"
 local app_title = app_name .. " " .. app_version
 local app_description = "Adds previous and next files from the same directory to the playlist."
 local app_short_desc = "Load prev/next file"
